@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
     "humps": "^2.0.1",
+    "moment": "^2.29.1",
     "underscore": "^1.13.1"
   },
   "devDependencies": {
