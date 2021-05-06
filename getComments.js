@@ -1,23 +1,24 @@
 import moment from "moment";
 import api from "./api";
 import { transformComment } from "./transformer";
+import { GET_COMMENTS_FIELDS } from "./constants";
 import { writeFile } from "./writeFile";
 
 function getComments(feed) {
   api
-    .get(feed.id + "/comments")
+    .get(feed.id + "/comments?" + GET_COMMENTS_FIELDS)
     .then(function (res) {
       const comments = res.data.data.map((e) => {
         return transformComment(e, feed);
       });
       let data = JSON.stringify(comments);
-      writeFile("comments", data)
+      writeFile("comments", data);
       return true;
     })
     .catch((e) => console.log(e));
 }
 
-// dữ liệu 1 queue get comments 
+// dữ liệu 1 queue get comments
 const queueFeed = {
   data: {
     type: "getFeed",

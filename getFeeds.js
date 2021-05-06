@@ -1,11 +1,11 @@
-import moment from "moment";
 import api from "./api";
 import { transformFeed } from "./transformer";
+import { GET_FEEDS_FIELDS } from "./constants";
 import { writeFile } from "./writeFile";
 
 function getFeeds(page) {
   api
-    .get(page.id + "/feed")
+    .get(page.id + "/feed?" + GET_FEEDS_FIELDS)
     .then(function (res) {
       const feeds = res.data.data.map((e) => {
         return transformFeed(e, page);
